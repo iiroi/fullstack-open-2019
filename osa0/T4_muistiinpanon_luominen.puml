@@ -1,0 +1,55 @@
+@startuml
+header Creating a note
+
+actor User
+boundary Browser
+
+User -> Browser : User clicks 'Save'
+note left
+    User saves the text
+    written in the text field
+end note
+
+Browser -> Server : HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note
+note left
+    Includes data
+    for a new note
+end note
+
+Server --> Browser : HTTP 302 Found
+note right
+    Server instructs the
+    browser to redirect
+    to /notes
+end note
+
+Browser -> Server : HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+Server --> Browser : HTTP 200 notes.html
+
+note over Browser
+    Retrieve files
+    declared in
+    notes.html
+end note
+Browser -> Server : HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+Server --> Browser : HTTP 200 main.css
+
+Browser -> Server : HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+Server --> Browser : HTTP 200 main.js
+note over Browser
+    Retrieve files
+    declared in
+    main.js
+end note
+
+Browser -> Server : HTTP GET main.json
+Server --> Browser : HTTP 200 main.json
+note over Browser
+    Browser executes an
+    event handler, which
+    then renders the 
+    JSON data
+end note
+
+
+@enduml

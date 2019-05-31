@@ -1,0 +1,29 @@
+@startuml
+header Creating a new note (SPA)
+
+actor User
+boundary Browser
+
+User -> Browser : User clicks 'Save'
+note left
+    User saves the text
+    written in the text field
+end note
+
+note over Browser
+    New note is
+    generated locally
+    inside the page
+end note
+
+Browser -> Server : HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+note left
+    Includes data
+    for a new note
+end note
+
+Server --> Browser : HTTP 201 Created
+
+
+
+@enduml

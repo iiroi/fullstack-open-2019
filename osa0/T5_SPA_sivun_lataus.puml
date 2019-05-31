@@ -1,0 +1,38 @@
+@startuml
+header Loading a page (SPA)
+
+boundary Browser
+
+
+Browser -> Server : HTTP GET https://fullstack-exampleapp.herokuapp.com/spa
+
+Server --> Browser : HTTP 200 OK, spa.html
+note over Browser
+    Retrieve files
+    declared in
+    spa.html
+end note
+
+Browser -> Server : HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+Server --> Browser : HTTP 200 OK, main.css
+
+Browser -> Server : HTTP GET https://fullstack-exampleapp.herokuapp.com/spa.js
+Server --> Browser : HTTP 200 OK, spa.js
+note over Browser
+    Retrieve files
+    declared in
+    spa.js
+end note
+
+Browser -> Server : HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+Server --> Browser : HTTP 200 OK, data.json
+note over Browser
+    Browser executes an
+    event handler, which
+    then renders the 
+    JSON data
+end note
+
+
+
+@enduml
